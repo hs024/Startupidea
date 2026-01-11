@@ -20,43 +20,21 @@ const servicesFunction = [
 
 const Services = () => {
   return (
-    <section id="services" className="section" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+    <section id="services" className="section bg-bg-secondary">
       <div className="container">
         <div className="text-center">
           <h2 className="title">Our Services</h2>
           <p className="subtitle">High-end digital solutions for your business.</p>
         </div>
 
-        <div className="grid gap-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesFunction.map((service, index) => (
-            <div key={index} style={{
-              backgroundColor: 'var(--card-bg)',
-              padding: '2rem',
-              borderRadius: '16px',
-              border: '1px solid var(--border-color)',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-10px)';
-              e.currentTarget.style.boxShadow = '0 10px 30px var(--accent-glow)';
-              e.currentTarget.style.borderColor = 'var(--accent-blue)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-              e.currentTarget.style.borderColor = 'var(--border-color)';
-            }}
-            >
-              <div style={{ 
-                fontSize: '3rem', 
-                marginBottom: '1rem', 
-                textShadow: '0 0 20px var(--accent-glow)' 
-              }}>
+            <div key={index} className="bg-card-bg p-8 rounded-2xl border border-border transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-[0_10px_30px_var(--accent-glow)] hover:border-accent-blue group">
+              <div className="text-5xl mb-4 drop-shadow-[0_0_20px_var(--accent-glow)]">
                 {service.icon}
               </div>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{service.title}</h3>
-              <p style={{ color: 'var(--text-secondary)' }}>{service.description}</p>
+              <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+              <p className="text-text-secondary">{service.description}</p>
             </div>
           ))}
         </div>

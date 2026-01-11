@@ -27,32 +27,17 @@ const Team = () => {
             <p className="subtitle">The minds behind the innovation.</p>
         </div>
 
-        <div className="grid gap-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
-                <div key={index} style={{
-                    backgroundColor: 'var(--card-bg)',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    border: '1px solid var(--border-color)',
-                    textAlign: 'center',
-                    padding: '2rem'
-                }}>
-                    <div style={{
-                        width: '120px',
-                        height: '120px',
-                        borderRadius: '50%',
-                        margin: '0 auto 1.5rem',
-                        overflow: 'hidden',
-                        border: '3px solid var(--accent-blue)',
-                        boxShadow: '0 0 20px var(--accent-glow)'
-                    }}>
+                <div key={index} className="bg-card-bg rounded-2xl overflow-hidden border border-border text-center p-8">
+                    <div className="w-[120px] h-[120px] rounded-full mx-auto mb-6 overflow-hidden border-[3px] border-accent-blue shadow-[0_0_20px_var(--accent-glow)]">
                          {/* Using a colored div as placeholder if image fails or just for style */}
-                        <div style={{ width: '100%', height: '100%', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>
+                        <div className="w-full h-full bg-bg-secondary flex items-center justify-center text-3xl">
                             {member.name.charAt(0)}
                         </div>
                     </div>
-                    <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{member.name}</h3>
-                    <p style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>{member.role}</p>
+                    <h3 className="text-xl mb-2 font-semibold">{member.name}</h3>
+                    <p className="text-accent-blue font-semibold">{member.role}</p>
                 </div>
             ))}
         </div>

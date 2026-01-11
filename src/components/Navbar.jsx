@@ -4,89 +4,60 @@ const Navbar = ({ theme, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isDark = theme === 'dark';
 
-  const navStyles = {
-    position: 'sticky',
-    top: '15px',
-    zIndex: 1000,
-    width: '90%',
-    margin: '0 auto',
-    backgroundColor: isDark ? 'rgba(5, 5, 5, 0.8)' : 'rgba(255, 255, 255, 0.8)',
-    border: '1px solid var(--border-color)',
-    borderRadius: '50px',
-    backdropFilter: 'blur(12px)',
-    boxShadow: isDark ? '0 10px 30px -10px rgba(0, 0, 0, 0.5)' : '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
-    transition: 'all 0.3s ease'
-  };
-
-  const mobileMenuStyles = {
-    position: 'absolute',
-    top: '80px',
-    left: 0,
-    width: '100%',
-    backgroundColor: isDark ? 'rgba(5, 5, 5, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-    padding: '1rem',
-    borderRadius: '24px',
-    border: '1px solid var(--border-color)',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-    backdropFilter: 'blur(12px)',
-    zIndex: 1001,
-  };
-
   return (
-    <nav style={navStyles}>
-      <div className="container flex items-center justify-between" style={{ height: '60px' }}>
-        <a href="#" style={{ 
-            fontSize: '1.5rem', 
-            fontWeight: 800, 
-            letterSpacing: '-0.5px',
-            color: 'var(--text-primary)'
-        }}>
+    <nav className={`sticky top-4 z-[1000] w-[90%] mx-auto rounded-[50px] backdrop-blur-xl border border-border transition-all duration-300 ease-in-out ${
+      isDark ? 'bg-black/80 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]' : 'bg-white/80 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)]'
+    }`}>
+      <div className="container flex items-center justify-between h-[60px]">
+        <a href="#" className="text-2xl font-extrabold tracking-tighter text-text-primary">
           Webloom
         </a>
 
         {/* Center Links - Desktop */}
-        <div className="desktop-menu absolute-center flex items-center gap-8">
-          <a href="#services" className="nav-link">Services</a>
-          <a href="#team" className="nav-link">Team</a>
-          <a href="#contact" className="nav-link">Contact</a>
+        <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-8">
+          {['Services', 'Team', 'Contact'].map((item) => (
+            <a key={item} href={`#${item.toLowerCase()}`} className="text-text-primary hover:text-accent-blue transition-colors">
+              {item}
+            </a>
+          ))}
         </div>
 
         {/* Right Buttons - Desktop */}
-        <div className="desktop-menu flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
             <button 
                 onClick={toggleTheme} 
-                className="theme-toggle"
+                className="p-2 rounded-full bg-white/5 border border-border text-text-primary hover:bg-white/10 transition-all text-lg"
                 aria-label="Toggle Theme"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem' }}
             >
                 {theme === 'light' ? '🌙' : '☀️'}
             </button>
-            <a href="#contact" className="btn btn-primary btn-sm">Get Started</a>
+            <a href="#contact" className="px-6 py-2.5 rounded-full text-sm font-semibold bg-accent-blue text-button-text shadow-[0_0_15px_var(--accent-glow)] hover:-translate-y-0.5 hover:shadow-[0_0_25px_var(--accent-glow)] hover:brightness-110 transition-all">
+              Get Started
+            </a>
         </div>
 
         {/* Mobile Menu Button */}
         <button 
-          className="mobile-menu-btn flex flex-row gap-1"
+          className="md:hidden flex flex-col gap-1 p-1"
           onClick={() => setIsOpen(!isOpen)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px',display: 'flex',flexDirection: 'column',gap: '4px'  }}
         >
-          <span style={{ width: '16px', height: '2px', backgroundColor: 'var(--text-primary)', display: 'block' }}></span>
-          <span style={{ width: '16px', height: '2px', backgroundColor: 'var(--text-primary)', display: 'block' }}></span>
-          <span style={{ width: '16px', height: '2px', backgroundColor: 'var(--text-primary)', display: 'block' }}></span>
+          <span className="w-6 h-0.5 bg-text-primary block"></span>
+          <span className="w-6 h-0.5 bg-text-primary block"></span>
+          <span className="w-6 h-0.5 bg-text-primary block"></span>
         </button>
-      </div> 
+      </div>
       
       {/* Basic Mobile Menu */}
       {isOpen && (
-          <div style={mobileMenuStyles}>
-              <a href="#services" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-primary)' }}>Services</a>
-              <a href="#team" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-primary)' }}>Team</a>
-              <a href="#contact" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-primary)' }}>Contact</a>
+          <div className={`absolute top-20 left-0 w-full p-4 rounded-3xl border border-border flex flex-col gap-4 backdrop-blur-xl z-[1001] ${
+            isDark ? 'bg-black/95' : 'bg-white/95'
+          }`}>
+              <a href="#services" onClick={() => setIsOpen(false)} className="text-text-primary hover:text-accent-blue">Services</a>
+              <a href="#team" onClick={() => setIsOpen(false)} className="text-text-primary hover:text-accent-blue">Team</a>
+              <a href="#contact" onClick={() => setIsOpen(false)} className="text-text-primary hover:text-accent-blue">Contact</a>
               <button 
                 onClick={() => { toggleTheme(); setIsOpen(false); }}
-                style={{ textAlign: 'left', background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer' }}
+                className="text-left text-text-primary hover:text-accent-blue"
               >
                   {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
               </button>

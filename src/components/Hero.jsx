@@ -1,99 +1,40 @@
 import robotImg from '../assets/hero-robot.png';
 
+
+
 const Hero = () => {
   return (
-    <section id="hero" className="section" style={{ 
-        minHeight: '90vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        position: 'relative',
-        overflow: 'hidden'
-    }}>
+    <section id="hero" className="section min-h-[90vh] flex items-center relative overflow-hidden">
       {/* Background Glow Effects */}
-      <div style={{
-          position: 'absolute',
-          top: '-20%',
-          right: '-10%',
-          width: '800px',
-          height: '800px',
-          background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 60%)',
-          borderRadius: '50%',
-          zIndex: -1,
-          filter: 'blur(80px)',
-          opacity: 0.6
-      }}></div>
+      <div className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] rounded-full -z-10 blur-[80px] opacity-60 bg-[radial-gradient(circle,var(--accent-glow)_0%,transparent_60%)]"></div>
       
-       <div style={{
-          position: 'absolute',
-          bottom: '10%',
-          left: '20%',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(167, 139, 250, 0.3) 0%, transparent 60%)',
-          borderRadius: '50%',
-          zIndex: -1,
-          filter: 'blur(80px)',
-          opacity: 0.4
-      }}></div>
+       <div className="absolute bottom-[10%] left-[20%] w-[600px] h-[600px] rounded-full -z-10 blur-[80px] opacity-40 bg-[radial-gradient(circle,rgba(167,139,250,0.3)_0%,transparent_60%)]"></div>
 
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-        <div style={{ zIndex: 1 }}>
-          <h1 style={{ 
-              fontSize: 'min(4.5rem, 15vw)', 
-              lineHeight: 1.1, 
-              marginBottom: '1.5rem',
-              fontWeight: 800,
-              color: 'var(--text-primary)'
-          }}>
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="z-10 text-center md:text-left">
+          <h1 className="text-5xl md:text-7xl lg:text-[min(4.5rem,15vw)] leading-[1.1] mb-6 font-extrabold text-text-primary">
             Watch your <br />
-            <span style={{ 
-                 background: 'var(--gradient-main)',
-                 WebkitBackgroundClip: 'text',
-                 WebkitTextFillColor: 'transparent',
-            }}>brand grow.</span>
+            <span className="bg-gradient-main bg-clip-text text-transparent">
+              brand grow.
+            </span>
           </h1>
-          <p className="subtitle" style={{ margin: '0 0 2.5rem 0', maxWidth: '500px', fontSize: '1.2rem' }}>
+          <p className="subtitle mb-10 max-w-[500px] text-lg mx-auto md:mx-0">
             Transform your digital presence with high-performance web solutions. We blend aesthetics with logic.
           </p>
-          <div className="flex gap-4">
-            <a href="#contact" className="btn" style={{ 
-                background: 'var(--gradient-main)', 
-                color: 'white', 
-                padding: '1rem 2rem',
-                borderRadius: '50px',
-                boxShadow: '0 10px 30px var(--accent-glow)'
-            }}>Get Started</a>
-            <a href="#services" className="btn" style={{ 
-                border: '1px solid var(--border-color)', 
-                padding: '1rem 2rem',
-                borderRadius: '50px',
-                backdropFilter: 'blur(5px)'
-            }}>Learn More</a>
+          <div className="flex gap-4 justify-center md:justify-start">
+            <a href="#contact" className="px-8 py-4 rounded-full bg-gradient-main text-white font-bold shadow-[0_10px_30px_var(--accent-glow)] hover:translate-y-[-2px] hover:shadow-[0_15px_40px_var(--accent-glow)] transition-all">
+              Get Started
+            </a>
+            <a href="#services" className="px-8 py-4 rounded-full border border-border backdrop-blur-sm hover:bg-white/5 transition-all">
+              Learn More
+            </a>
           </div>
         </div>
         
         {/* Hero Image */}
-        <div style={{ 
-            display: 'flex', 
-            justifyContent: 'center',
-            position: 'relative',
-        }}>
-            <div style={{
-                width: '100%',
-                maxWidth: '600px',
-                position: 'relative',
-                animation: 'float 6s ease-in-out infinite'
-            }}>
-                <style>
-                    {`@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }`}
-                </style>
-                <img src={robotImg} alt="Futuristic Robot" style={{ 
-                    width: '100%', 
-                    height: 'auto', 
-                    borderRadius: '24px',
-                    boxShadow: '0 20px 50px -12px var(--accent-glow)',
-                    border: '1px solid rgba(255,255,255,0.1)'
-                }} />
+        <div className="flex justify-center relative">
+            <div className="w-full max-w-[600px] relative animate-float">
+                <img src={robotImg} alt="Futuristic Robot" className="w-full h-auto rounded-3xl shadow-[0_20px_50px_-12px_var(--accent-glow)] border border-white/10" />
             </div>
         </div>
       </div>
@@ -102,3 +43,5 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
